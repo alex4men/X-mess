@@ -50,7 +50,7 @@ class GameScene: SKScene {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             n.strokeColor = SKColor.blue
-            print("hi")
+            print("hi, i'm grib")
             self.addChild(n)
         }
     }
