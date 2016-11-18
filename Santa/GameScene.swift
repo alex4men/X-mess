@@ -9,8 +9,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let gameArea: CGRect
         var levelNumber = 0
         var livesNumber = 3
-        var firingBullets = false
-        var bulletSpeed: NSTimeInterval = 2
         
         // Update vars
         var lastUpdateTime: NSTimeInterval = 0
@@ -23,8 +21,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let tapToStartLabel = SKLabelNode(text: "Tap to start")
         let newLevelLabel = SKLabelNode(text: "NEW LEVEL!")
         let player = SKSpriteNode(imageNamed: "santa_1")
-    
-    let playerAnimation: SKAction
+        let playerAnimation: SKAction
     
         // Sounds
         var backgroundMusic: SKAudioNode!
@@ -33,22 +30,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bulletSound = SKAction.playSoundFileNamed("BulletSound.wav", waitForCompletion: false)
         let explosionSound = SKAction.playSoundFileNamed("ExplosionSound.wav", waitForCompletion: false)
     
-        // Game states
-        enum gameState {
-            case preGame
-            case inGame
-            case afterGame
-        }
-            // Declaring initial game state
-            var currentGameState = gameState.preGame
-        
-        // Physics config
-        struct PhysicsCategories {
-            static let None: UInt32 = 0
-            static let Player: UInt32 = 0b1 // 1
-            static let Bullet: UInt32 = 0b10 // 2
-            static let Enemy: UInt32 = 0b100 // 4
-        }
+    let utility = Utility()
+    let bullet = Bullet()
     
     /* OVERRIDING FUNCTIONS */
         // 1
@@ -71,6 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // 4
             playerAnimation = SKAction.animateWithTextures(textures, timePerFrame: 0.1)
+            
             
             super.init(size: size)
         }
@@ -161,7 +145,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scoreLabel.runAction(moveOnToScreenAction)
                 livesLabel.runAction(moveOnToScreenAction)
                 tapToStartLabel.runAction(fadeInAction)
+            
+            let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp(_:)))
+            swipeUp.direction = .Up
+            view.addGestureRecognizer(swipeUp)
+            
         }
+    
+    func swipedUp(sender:UISwipeGestureRecognizer){
+        
+        //let gift = GiftNode.createGift(player.position)
+       // let gift = GiftNode.createGift(player.position)
+        self.removeActionForKey("fireBullets")
+        self.removeActionForKey("shooting")
+        let giftNode = GiftNode()
+        let gift = giftNode.createGift(player.position)
+        self.addChild(gift)
+        gift.runAction(giftNode.moveGift(player.position.y))
+    }
     
     func startSantaAnimation() {
         if player.actionForKey("animation") == nil {
@@ -176,7 +177,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if currentGameState == gameState.preGame {
                 startGame()
             } else if currentGameState == gameState.inGame {
-                firingBullets = true
                 self.runAction(SKAction.repeatActionForever(SKAction.sequence([bulletSound, SKAction.waitForDuration(0.35)])), withKey: "shooting")
                 self.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(fireBullet), SKAction.waitForDuration(0.35)])), withKey: "fireBullets")
             }
@@ -226,7 +226,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.enumerateChildNodesWithName("Background") {
                 background, stop in
                 
-                if self.currentGameState == gameState.inGame {
+                if currentGameState == gameState.inGame {
                     background.position.y -= amountToMoveBackground
                 }
                 
@@ -452,8 +452,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     
         func spawnEnemy(){
-            let randomXStart = random(min: CGRectGetMinX(gameArea), max: CGRectGetMaxX(gameArea))
-            let randomXEnd = random(min: CGRectGetMinX(gameArea), max: CGRectGetMaxX(gameArea))
+            let randomXStart = utility.random(min: CGRectGetMinX(gameArea), max: CGRectGetMaxX(gameArea))
+            let randomXEnd = utility.random(min: CGRectGetMinX(gameArea), max: CGRectGetMaxX(gameArea))
             let startPoint = CGPoint(x: randomXStart, y: self.size.height * 1.2)
             let endPoint = CGPoint(x: randomXEnd, y: -self.size.height * 0.2)
             let enemy = SKSpriteNode(imageNamed: "enemy_1")
@@ -558,54 +558,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-        func fireBullet() {
-            let bullet = SKSpriteNode(imageNamed: "bullet_1")
-            let bulletAnimation: SKAction
-            
-            bullet.name = "Bullet"
-            bullet.setScale(5)
-            bullet.position = player.position
-            bullet.zPosition = 1
-            bullet.physicsBody = SKPhysicsBody(rectangleOfSize: bullet.size)
-            bullet.physicsBody!.affectedByGravity = false
-            bullet.physicsBody!.categoryBitMask = PhysicsCategories.Bullet
-            bullet.physicsBody!.collisionBitMask = PhysicsCategories.None
-            bullet.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy
-            self.addChild(bullet)
-            
-            let moveBullet = SKAction.moveToY(self.size.height + bullet.size.height, duration: bulletSpeed)
-            let deleteBullet = SKAction.removeFromParent()
-            
-            let bulletSequence = SKAction.sequence([moveBullet, deleteBullet])
-            bullet.runAction(bulletSequence)
-            
-            // 1
-            var textures:[SKTexture] = []
-            // 2
-            for i in 1...4 {
-                textures.append(SKTexture(imageNamed: "bullet_\(i)"))
-            }
-            // 3
-            textures.append(textures[2])
-            textures.append(textures[1])
-            
-            // 4
-            bulletAnimation = SKAction.animateWithTextures(textures,
-                                                           timePerFrame: 0.3)
-        
-            if bullet.actionForKey("animation") == nil {
-                bullet.runAction(
-                    SKAction.repeatActionForever(bulletAnimation),
-                    withKey: "animation")
-            }
-        }
-    
-        
-        func random() -> CGFloat {
-            return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
-        }
-        
-        func random(min min: CGFloat, max: CGFloat) -> CGFloat {
-            return random() * (max - min) + min
-        }
+    func fireBullet(){
+        self.addChild(bullet.fireBullet(player.position))
+    }
 }
