@@ -1,33 +1,22 @@
-//
-//  GameViewController.swift
-//  Santa
-//
-//  Created by Илья Измайлов on 25.10.16.
-//  Copyright (c) 2016 Ilya Izmailov. All rights reserved.
-//
-
 import UIKit
 import SpriteKit
+import AVFoundation
 
 class GameViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let scene = GameScene(fileNamed:"GameScene") {
-            // Configure the view.
-            let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
-            
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = true
-            
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            
-            skView.presentScene(scene)
-        }
+        let scene = MainMenuScene(size: CGSize(width: 1536, height: 2048))
+        let skView = self.view as! SKView
+        
+        skView.showsFPS = true
+        skView.showsNodeCount = true
+        skView.ignoresSiblingOrder = true
+        scene.scaleMode = .AspectFill
+        
+        skView.presentScene(scene)
+        
     }
 
     override func shouldAutorotate() -> Bool {
@@ -44,7 +33,6 @@ class GameViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
     }
 
     override func prefersStatusBarHidden() -> Bool {

@@ -14,6 +14,17 @@
 		6398F24C1DBFD9EA0001E4AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6398F24A1DBFD9EA0001E4AC /* Main.storyboard */; };
 		6398F24E1DBFD9EA0001E4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6398F24D1DBFD9EA0001E4AC /* Assets.xcassets */; };
 		6398F2511DBFD9EA0001E4AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6398F24F1DBFD9EA0001E4AC /* LaunchScreen.storyboard */; };
+		FAE679271DC1462C00A65538 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE679261DC1462C00A65538 /* GameOverScene.swift */; };
+		FC6857E71DDA6D6800A98316 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6857E61DDA6D6800A98316 /* MainMenuScene.swift */; };
+		FC6857E91DDA732D00A98316 /* MainMenuMusic.wav in Resources */ = {isa = PBXBuildFile; fileRef = FC6857E81DDA732D00A98316 /* MainMenuMusic.wav */; };
+		FC6857F11DDA7A9800A98316 /* SnowtopCaps.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC6857F01DDA7A9800A98316 /* SnowtopCaps.ttf */; };
+		FC6857F81DDA8D5200A98316 /* GameMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FC6857F61DDA8D5200A98316 /* GameMusic.mp3 */; };
+		FC6857F91DDA8D5200A98316 /* MainMenuVoice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FC6857F71DDA8D5200A98316 /* MainMenuVoice.mp3 */; };
+		FC6857FC1DDA8EF700A98316 /* LoseGameVoice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FC6857FA1DDA8EF700A98316 /* LoseGameVoice.mp3 */; };
+		FC6857FD1DDA8EF700A98316 /* StartGameVoice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FC6857FB1DDA8EF700A98316 /* StartGameVoice.mp3 */; };
+		FC6857FF1DDAA74600A98316 /* BulletSound_another.wav in Resources */ = {isa = PBXBuildFile; fileRef = FC6857FE1DDAA74600A98316 /* BulletSound_another.wav */; };
+		FC6858021DDAADFB00A98316 /* BulletSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = FC6858011DDAADFB00A98316 /* BulletSound.wav */; };
+		FC6858041DDAAF7300A98316 /* ExplosionSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = FC6858031DDAAF7300A98316 /* ExplosionSound.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +37,17 @@
 		6398F24D1DBFD9EA0001E4AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6398F2501DBFD9EA0001E4AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6398F2521DBFD9EA0001E4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAE679261DC1462C00A65538 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		FC6857E61DDA6D6800A98316 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		FC6857E81DDA732D00A98316 /* MainMenuMusic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MainMenuMusic.wav; sourceTree = "<group>"; };
+		FC6857F01DDA7A9800A98316 /* SnowtopCaps.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SnowtopCaps.ttf; sourceTree = "<group>"; };
+		FC6857F61DDA8D5200A98316 /* GameMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameMusic.mp3; sourceTree = "<group>"; };
+		FC6857F71DDA8D5200A98316 /* MainMenuVoice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MainMenuVoice.mp3; sourceTree = "<group>"; };
+		FC6857FA1DDA8EF700A98316 /* LoseGameVoice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = LoseGameVoice.mp3; sourceTree = "<group>"; };
+		FC6857FB1DDA8EF700A98316 /* StartGameVoice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = StartGameVoice.mp3; sourceTree = "<group>"; };
+		FC6857FE1DDAA74600A98316 /* BulletSound_another.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BulletSound_another.wav; sourceTree = "<group>"; };
+		FC6858011DDAADFB00A98316 /* BulletSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BulletSound.wav; sourceTree = "<group>"; };
+		FC6858031DDAAF7300A98316 /* ExplosionSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ExplosionSound.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +80,35 @@
 		6398F2411DBFD9EA0001E4AC /* Santa */ = {
 			isa = PBXGroup;
 			children = (
+				FC6857EF1DDA7A5500A98316 /* Resources */,
+				6398F24D1DBFD9EA0001E4AC /* Assets.xcassets */,
 				6398F2421DBFD9EA0001E4AC /* AppDelegate.swift */,
+				FC6857E61DDA6D6800A98316 /* MainMenuScene.swift */,
 				6398F2441DBFD9EA0001E4AC /* GameScene.sks */,
 				6398F2461DBFD9EA0001E4AC /* GameScene.swift */,
+				FAE679261DC1462C00A65538 /* GameOverScene.swift */,
 				6398F2481DBFD9EA0001E4AC /* GameViewController.swift */,
-				6398F24A1DBFD9EA0001E4AC /* Main.storyboard */,
-				6398F24D1DBFD9EA0001E4AC /* Assets.xcassets */,
 				6398F24F1DBFD9EA0001E4AC /* LaunchScreen.storyboard */,
+				6398F24A1DBFD9EA0001E4AC /* Main.storyboard */,
 				6398F2521DBFD9EA0001E4AC /* Info.plist */,
 			);
 			path = Santa;
+			sourceTree = "<group>";
+		};
+		FC6857EF1DDA7A5500A98316 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FC6857F01DDA7A9800A98316 /* SnowtopCaps.ttf */,
+				FC6857E81DDA732D00A98316 /* MainMenuMusic.wav */,
+				FC6857F61DDA8D5200A98316 /* GameMusic.mp3 */,
+				FC6857F71DDA8D5200A98316 /* MainMenuVoice.mp3 */,
+				FC6857FB1DDA8EF700A98316 /* StartGameVoice.mp3 */,
+				FC6857FA1DDA8EF700A98316 /* LoseGameVoice.mp3 */,
+				FC6858011DDAADFB00A98316 /* BulletSound.wav */,
+				FC6857FE1DDAA74600A98316 /* BulletSound_another.wav */,
+				FC6858031DDAAF7300A98316 /* ExplosionSound.wav */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,11 +138,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Ilya Izmailov";
 				TargetAttributes = {
 					6398F23E1DBFD9EA0001E4AC = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -128,10 +170,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6857FF1DDAA74600A98316 /* BulletSound_another.wav in Resources */,
 				6398F2451DBFD9EA0001E4AC /* GameScene.sks in Resources */,
 				6398F2511DBFD9EA0001E4AC /* LaunchScreen.storyboard in Resources */,
 				6398F24E1DBFD9EA0001E4AC /* Assets.xcassets in Resources */,
+				FC6857F81DDA8D5200A98316 /* GameMusic.mp3 in Resources */,
+				FC6858021DDAADFB00A98316 /* BulletSound.wav in Resources */,
+				FC6857FD1DDA8EF700A98316 /* StartGameVoice.mp3 in Resources */,
+				FC6857F91DDA8D5200A98316 /* MainMenuVoice.mp3 in Resources */,
 				6398F24C1DBFD9EA0001E4AC /* Main.storyboard in Resources */,
+				FC6857FC1DDA8EF700A98316 /* LoseGameVoice.mp3 in Resources */,
+				FC6858041DDAAF7300A98316 /* ExplosionSound.wav in Resources */,
+				FC6857F11DDA7A9800A98316 /* SnowtopCaps.ttf in Resources */,
+				FC6857E91DDA732D00A98316 /* MainMenuMusic.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +193,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC6857E71DDA6D6800A98316 /* MainMenuScene.swift in Sources */,
 				6398F2471DBFD9EA0001E4AC /* GameScene.swift in Sources */,
 				6398F2491DBFD9EA0001E4AC /* GameViewController.swift in Sources */,
+				FAE679271DC1462C00A65538 /* GameOverScene.swift in Sources */,
 				6398F2431DBFD9EA0001E4AC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,8 +237,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -230,8 +285,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -250,6 +307,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -260,9 +318,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Santa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Innopolis.Santa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -271,9 +331,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Santa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Innopolis.Santa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -296,6 +358,7 @@
 				6398F2571DBFD9EA0001E4AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
