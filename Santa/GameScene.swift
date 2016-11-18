@@ -177,7 +177,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 startGame()
             } else if currentGameState == gameState.inGame {
                 firingBullets = true
-                self.runAction(SKAction.repeatActionForever(SKAction.sequence([bulletSound, SKAction.waitForDuration(0.1)])), withKey: "shooting")
+                self.runAction(SKAction.repeatActionForever(SKAction.sequence([bulletSound, SKAction.waitForDuration(0.35)])), withKey: "shooting")
+                self.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(fireBullet), SKAction.waitForDuration(0.35)])), withKey: "fireBullets")
             }
         }
     
@@ -205,7 +206,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // 5
         override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
             if currentGameState == gameState.inGame {
-                firingBullets = false
+//                firingBullets = false
+                self.removeActionForKey("fireBullets")
                 self.removeActionForKey("shooting")
             }
         }
@@ -233,9 +235,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             
-            if firingBullets == true {
-                fireBullet()
-            }
+//            if firingBullets == true {
+//                fireBullet()
+//            }
         }
     
     /* Self-written functions */
@@ -429,7 +431,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if levelNumber > 1 {
                 newLevelLabel.runAction(newLevelAnimation)
-                getALife()
+                //getALife()
             }
             
             if (levelNumber > 2) {
