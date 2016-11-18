@@ -70,7 +70,7 @@ class GameOverScene: SKScene {
                 let myTransition = SKTransition.fadeWithDuration(0.5)
                 
                 sceneToMoveTo.scaleMode = self.scaleMode
-                
+                currentGameState = .preGame
                 self.view!.presentScene(sceneToMoveTo, transition: myTransition)
             }
         }

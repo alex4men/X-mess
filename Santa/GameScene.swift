@@ -20,8 +20,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let utility = Utility()
     let bullet = Bullet()
     let santaNode = Santa()
-    var gameNodes : GameNodes
-    var santa : SKSpriteNode
+    var gameNodes : GameNodes!
+    var santa : SKSpriteNode!
     
     /* OVERRIDING FUNCTIONS */
     
@@ -32,8 +32,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let margin = (size.width - playableWidth) / 2
         
         gameArea = CGRect(x: margin, y: 0, width: playableWidth, height: size.height)
-        santa = santaNode.addSanta(size)
-        gameNodes = GameNodes(size: size)
         super.init(size: size)
     }
     
@@ -50,7 +48,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         /* Declaring initial game score */
+        santa = santaNode.addSanta(size)
+        gameNodes = GameNodes(size: size)
         gameScore = 0
+    
         
         /* Configs */
         self.physicsWorld.contactDelegate = self
@@ -266,7 +267,6 @@ extension GameScene {
             enemy, stop in
             enemy.removeAllActions()
         }
-        
         
         self.runAction(changeSceneSequence)
     }
