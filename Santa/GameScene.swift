@@ -212,39 +212,23 @@ extension GameScene {
     
     func spawnExplosion(spawnPosition: CGPoint) {
         let explosion = SKSpriteNode(imageNamed: "explosion_1")
-        let scaleIn = SKAction.scaleTo(5, duration: 0.3)
-        let fadeOut = SKAction.fadeOutWithDuration(0.3)
+        
+        var textures:[SKTexture] = []
+        for i in 1...7 {
+            textures.append(SKTexture(imageNamed: "explosion_\(i)"))
+        }
+        let animate = SKAction.animateWithTextures(textures, timePerFrame: 0.03)
+        
         let delete = SKAction.removeFromParent()
-        let explosionSequence = SKAction.sequence([gameNodes.explosionSound, scaleIn, fadeOut, delete])
-        
-        let explosionAnimation: SKAction
-        
+        let explosionSequence = SKAction.sequence([gameNodes.explosionSound, animate, delete])
+
         explosion.position = spawnPosition
-        explosion.setScale(0)
+        explosion.setScale(8)
         explosion.zPosition = 3
         
         self.addChild(explosion)
         
         explosion.runAction(explosionSequence)
-        
-        // 1
-        var textures:[SKTexture] = []
-        // 2
-        for i in 1...7 {
-            textures.append(SKTexture(imageNamed: "explosion_\(i)"))
-        }
-        // 3
-        textures.append(textures[2])
-        textures.append(textures[1])
-        
-        // 4
-        explosionAnimation = SKAction.animateWithTextures(textures, timePerFrame: 0.01)
-        
-        if explosion.actionForKey("animation") == nil {
-            explosion.runAction(
-                SKAction.repeatActionForever(explosionAnimation),
-                withKey: "animation")
-        }
         
     }
     

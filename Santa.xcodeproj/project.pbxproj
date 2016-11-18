@@ -158,7 +158,7 @@
 				TargetAttributes = {
 					6398F23E1DBFD9EA0001E4AC = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = AHN6693P2A;
+						DevelopmentTeam = 6Z4FBL44X9;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -338,11 +338,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AHN6693P2A;
+				DEVELOPMENT_TEAM = 6Z4FBL44X9;
 				INFOPLIST_FILE = Santa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GRIB;
+				PRODUCT_BUNDLE_IDENTIFIER = Innopolis.Santa1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 			};
@@ -352,11 +352,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = AHN6693P2A;
+				DEVELOPMENT_TEAM = 6Z4FBL44X9;
 				INFOPLIST_FILE = Santa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = GRIB;
+				PRODUCT_BUNDLE_IDENTIFIER = Innopolis.Santa1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 			};
