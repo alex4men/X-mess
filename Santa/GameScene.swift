@@ -237,8 +237,7 @@ extension GameScene {
         textures.append(textures[1])
         
         // 4
-        explosionAnimation = SKAction.animateWithTextures(textures,
-                                                          timePerFrame: 0.01)
+        explosionAnimation = SKAction.animateWithTextures(textures, timePerFrame: 0.01)
         
         if explosion.actionForKey("animation") == nil {
             explosion.runAction(

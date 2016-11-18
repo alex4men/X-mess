@@ -8,7 +8,7 @@ class GameOverScene: SKScene {
     override func didMoveToView(view: SKView) {
         let backgroundMusic: SKAudioNode!
         let defaults = NSUserDefaults()
-        let background = SKSpriteNode(imageNamed: "gameBackground")
+        let background = SKSpriteNode(imageNamed: "mainMenuBackground")
         let gameOverLabel = SKLabelNode(text: "Game over")
         let scoreLabel = SKLabelNode(text: "Score: \(gameScore)")
         let highScoreLabel = SKLabelNode()
@@ -23,13 +23,13 @@ class GameOverScene: SKScene {
         background.zPosition = 0
         
         gameOverLabel.fontColor = SKColor.whiteColor()
-        gameOverLabel.fontName = "HelveticaNeue-Medium"
+        gameOverLabel.fontName = "SnowtopCaps"
         gameOverLabel.fontSize = 200
         gameOverLabel.position = CGPoint(x: self.size.width*0.5, y: self.size.height*0.7)
         gameOverLabel.zPosition = 1
         
         scoreLabel.fontColor = SKColor.whiteColor()
-        scoreLabel.fontName = "HelveticaNeue"
+        scoreLabel.fontName = "SnowtopCaps"
         scoreLabel.fontSize = 125
         scoreLabel.position = CGPoint(x: self.size.width/2, y: self.size.height*0.55)
         scoreLabel.zPosition = 1
@@ -43,13 +43,13 @@ class GameOverScene: SKScene {
         
         highScoreLabel.text = "High Score: \(highScoreNumber)"
         highScoreLabel.fontColor = SKColor.whiteColor()
-        highScoreLabel.fontName = "HelveticaNeue"
+        highScoreLabel.fontName = "SnowtopCaps"
         highScoreLabel.fontSize = 125
         highScoreLabel.position = CGPoint(x: self.size.width/2, y: self.size.height*0.45)
         highScoreLabel.zPosition = 1
         
         restartLabel.fontColor = SKColor.whiteColor()
-        restartLabel.fontName = "HelveticaNeue-Medium"
+        restartLabel.fontName = "SnowtopCaps"
         restartLabel.fontSize = 90
         restartLabel.position = CGPoint(x: self.size.width/2, y: self.size.height*0.3)
         restartLabel.zPosition = 1

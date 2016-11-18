@@ -17,8 +17,8 @@ class GameNodes {
     let newLevelLabel = SKLabelNode(text: "NEW LEVEL!")
     
     /* Seamless backgrounds */
-    let background_top = SKSpriteNode(imageNamed: "gameBackground")
-    let background_bottom = SKSpriteNode(imageNamed: "gameBackground")
+    let background_top = SKSpriteNode(imageNamed: "gameBackground2")
+    let background_bottom = SKSpriteNode(imageNamed: "gameBackground1")
     
     // Sounds
     let startGameVoice = SKAction.playSoundFileNamed("StartGameVoice.mp3", waitForCompletion: false)
@@ -45,14 +45,14 @@ class GameNodes {
         background_bottom.zPosition = 0
         
         scoreLabel.fontColor = SKColor.whiteColor()
-        scoreLabel.fontName = "HelveticaNeue"
+        scoreLabel.fontName = "SnowtopCaps"
         scoreLabel.fontSize = 70
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
         scoreLabel.position = CGPoint(x: size.width * 0.15, y: size.height + scoreLabel.frame.size.height)
         scoreLabel.zPosition = 100
         
         livesLabel.fontColor = SKColor.whiteColor()
-        livesLabel.fontName = "HelveticaNeue"
+        livesLabel.fontName = "SnowtopCaps"
         livesLabel.fontSize = 70
         livesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
         livesLabel.position = CGPoint(x: size.width * 0.85, y: size.height + livesLabel.frame.size.height)
@@ -60,14 +60,14 @@ class GameNodes {
         
         tapToStartLabel.alpha = 0
         tapToStartLabel.fontColor = SKColor.whiteColor()
-        tapToStartLabel.fontName = "HelveticaNeue-Medium"
+        tapToStartLabel.fontName = "SnowtopCaps"
         tapToStartLabel.fontSize = 100
         tapToStartLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
         tapToStartLabel.zPosition = 1
         
         newLevelLabel.alpha = 0
         newLevelLabel.fontColor = SKColor.whiteColor()
-        newLevelLabel.fontName = "HelveticaNeue-Medium"
+        newLevelLabel.fontName = "SnowtopCaps"
         newLevelLabel.fontSize = 100
         newLevelLabel.position = CGPoint(x: size.width / 2, y: size.height * 0.7)
         newLevelLabel.zPosition = 1
