@@ -4,34 +4,24 @@ import AVFoundation
 var gameScore = 0
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    /* VARS and CONFIGS */
-        // Game vars
-        let gameArea: CGRect
-        var levelNumber = 0
-        var livesNumber = 3
-        
-        // Update vars
-        var lastUpdateTime: NSTimeInterval = 0
-        var deltaFrameTime: NSTimeInterval = 0
-        var amountToMovePerSecond: CGFloat = 600.0
-        
-        // On-screen objects
-        let scoreLabel = SKLabelNode(text: "Score: 0")
-        let livesLabel = SKLabelNode(text: "Lives: 3")
-        let tapToStartLabel = SKLabelNode(text: "Tap to start")
-        let newLevelLabel = SKLabelNode(text: "NEW LEVEL!")
-        let player = SKSpriteNode(imageNamed: "santa_1")
-        let playerAnimation: SKAction
     
-        // Sounds
-        var backgroundMusic: SKAudioNode!
-        let startGameVoice = SKAction.playSoundFileNamed("StartGameVoice.mp3", waitForCompletion: false)
-        let loseGameVoice = SKAction.playSoundFileNamed("LoseGameVoice.mp3", waitForCompletion: false)
-        let bulletSound = SKAction.playSoundFileNamed("BulletSound.wav", waitForCompletion: false)
-        let explosionSound = SKAction.playSoundFileNamed("ExplosionSound.wav", waitForCompletion: false)
+    /* VARS and CONFIGS */
+    // Game vars
+    let gameArea: CGRect
+    var levelNumber = 0
+    var livesNumber = 3
+        
+    // Update vars
+    var lastUpdateTime: NSTimeInterval = 0
+    var deltaFrameTime: NSTimeInterval = 0
+    var amountToMovePerSecond: CGFloat = 600.0
+    var backgroundMusic: SKAudioNode!
     
     let utility = Utility()
     let bullet = Bullet()
+    let santaNode = Santa()
+    var gameNodes : GameNodes
+    var santa : SKSpriteNode
     
     /* OVERRIDING FUNCTIONS */
         // 1
@@ -41,21 +31,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let margin = (size.width - playableWidth) / 2
             
             gameArea = CGRect(x: margin, y: 0, width: playableWidth, height: size.height)
-            
-            //1
-            var textures:[SKTexture] = []
-            // 2
-            for i in 1...4 {
-                textures.append(SKTexture(imageNamed: "santa_\(i)"))
-            }
-            // 3
-            textures.append(textures[2])
-            textures.append(textures[1])
-            
-            // 4
-            playerAnimation = SKAction.animateWithTextures(textures, timePerFrame: 0.1)
-            
-            
+            santa = santaNode.addSanta(size)
+            gameNodes = GameNodes(size: size)
             super.init(size: size)
         }
             required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
@@ -63,88 +40,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // 2
         override func didMoveToView(view: SKView) {
             
-            /* Seamless backgrounds */
-                let background_top = SKSpriteNode(imageNamed: "gameBackground")
-                let background_bottom = SKSpriteNode(imageNamed: "gameBackground")
-            
-            /* Defining actions */
-                let fadeInAction = SKAction.fadeInWithDuration(0.3)
-                let moveOnToScreenAction = SKAction.moveToY(self.size.height * 0.9, duration: 0.3)
-            
             /* Setting up background music */
-                if let musicURL = NSBundle.mainBundle().URLForResource("GameMusic", withExtension: "mp3") {
-                    backgroundMusic = SKAudioNode(URL: musicURL)
-                    addChild(backgroundMusic)
-                }
+            if let musicURL = NSBundle.mainBundle().URLForResource("GameMusic", withExtension: "mp3") {
+                backgroundMusic = SKAudioNode(URL: musicURL)
+                addChild(backgroundMusic)
+            }
             
             /* Declaring initial game score */
                 gameScore = 0
             
             /* Configs */
                 self.physicsWorld.contactDelegate = self
-                
-                background_top.anchorPoint = CGPoint(x: 0.5, y: 0)
-                background_top.name = "Background"
-                background_top.position = CGPoint(x: self.size.width / 2, y: self.size.height)
-                background_top.size = self.size
-                background_top.zPosition = 0
-                
-                background_bottom.anchorPoint = CGPoint(x: 0.5, y: 0)
-                background_bottom.name = "Background"
-                background_bottom.position = CGPoint(x: self.size.width / 2, y: 0)
-                background_bottom.size = self.size
-                background_bottom.zPosition = 0
-                
-                player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
-                player.physicsBody!.affectedByGravity = false
-                player.physicsBody!.categoryBitMask = PhysicsCategories.Player
-                player.physicsBody!.collisionBitMask = PhysicsCategories.None
-                player.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy
-                player.position = CGPoint(x: self.size.width / 2, y: 0 - player.size.height)
-                player.setScale(3)
-                player.zPosition = 2
-            
-                scoreLabel.fontColor = SKColor.whiteColor()
-                scoreLabel.fontName = "HelveticaNeue"
-                scoreLabel.fontSize = 70
-                scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Left
-                scoreLabel.position = CGPoint(x: self.size.width * 0.15, y: self.size.height + scoreLabel.frame.size.height)
-                scoreLabel.zPosition = 100
-            
-                livesLabel.fontColor = SKColor.whiteColor()
-                livesLabel.fontName = "HelveticaNeue"
-                livesLabel.fontSize = 70
-                livesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-                livesLabel.position = CGPoint(x: self.size.width * 0.85, y: self.size.height + livesLabel.frame.size.height)
-                livesLabel.zPosition = 100
-            
-                tapToStartLabel.alpha = 0
-                tapToStartLabel.fontColor = SKColor.whiteColor()
-                tapToStartLabel.fontName = "HelveticaNeue-Medium"
-                tapToStartLabel.fontSize = 100
-                tapToStartLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-                tapToStartLabel.zPosition = 1
-            
-                newLevelLabel.alpha = 0
-                newLevelLabel.fontColor = SKColor.whiteColor()
-                newLevelLabel.fontName = "HelveticaNeue-Medium"
-                newLevelLabel.fontSize = 100
-                newLevelLabel.position = CGPoint(x: self.size.width / 2, y: self.size.height * 0.7)
-                newLevelLabel.zPosition = 1
             
             /* Inserting objects to gameplay */
-                self.addChild(background_top)
-                self.addChild(background_bottom)
-                self.addChild(player)
-                self.addChild(livesLabel)
-                self.addChild(scoreLabel)
-                self.addChild(tapToStartLabel)
-                self.addChild(newLevelLabel)
-            
-            /* Running */
-                scoreLabel.runAction(moveOnToScreenAction)
-                livesLabel.runAction(moveOnToScreenAction)
-                tapToStartLabel.runAction(fadeInAction)
+                self.addChild(gameNodes.background_top)
+                self.addChild(gameNodes.background_bottom)
+                self.addChild(santa)
+                self.addChild(gameNodes.livesLabel)
+                self.addChild(gameNodes.scoreLabel)
+                self.addChild(gameNodes.tapToStartLabel)
+                self.addChild(gameNodes.newLevelLabel)
             
             let swipeUp:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(GameScene.swipedUp(_:)))
             swipeUp.direction = .Up
@@ -159,61 +74,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.removeActionForKey("fireBullets")
         self.removeActionForKey("shooting")
         let giftNode = GiftNode()
-        let gift = giftNode.createGift(player.position)
+        let gift = giftNode.createGift(santa.position)
         self.addChild(gift)
-        gift.runAction(giftNode.moveGift(player.position.y))
+        gift.runAction(giftNode.moveGift(santa.position.y))
     }
     
-    func startSantaAnimation() {
-        if player.actionForKey("animation") == nil {
-            player.runAction(
-                SKAction.repeatActionForever(playerAnimation),
-                withKey: "animation")
-        }
-    }
-    
-        // 3
-        override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
             if currentGameState == gameState.preGame {
                 startGame()
             } else if currentGameState == gameState.inGame {
-                self.runAction(SKAction.repeatActionForever(SKAction.sequence([bulletSound, SKAction.waitForDuration(0.35)])), withKey: "shooting")
+                self.runAction(SKAction.repeatActionForever(SKAction.sequence([gameNodes.bulletSound, SKAction.waitForDuration(0.35)])), withKey: "shooting")
                 self.runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(fireBullet), SKAction.waitForDuration(0.35)])), withKey: "fireBullets")
             }
         }
-    
-        // 4
-        override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
             for touch: AnyObject in touches{
                 let pointOfTouch = touch.locationInNode(self)
                 let previousPointOfTouch = touch.previousLocationInNode(self)
                 let amountDragged = pointOfTouch.x - previousPointOfTouch.x // Moving Santa
                 
                 if currentGameState == gameState.inGame {
-                    player.position.x += amountDragged
+                    santa.position.x += amountDragged
                 }
                 
-                if player.position.x > CGRectGetMaxX(gameArea) - player.size.width / 2 {
-                    player.position.x = CGRectGetMaxX(gameArea) - player.size.width / 2
+                if santa.position.x > CGRectGetMaxX(gameArea) - santa.size.width / 2 {
+                    santa.position.x = CGRectGetMaxX(gameArea) - santa.size.width / 2
                 }
                 
-                if player.position.x < CGRectGetMinX(gameArea) + player.size.width / 2 {
-                    player.position.x = CGRectGetMinX(gameArea) + player.size.width / 2
+                if santa.position.x < CGRectGetMinX(gameArea) + santa.size.width / 2 {
+                    santa.position.x = CGRectGetMinX(gameArea) + santa.size.width / 2
                 }
             }
         }
     
-        // 5
-        override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
             if currentGameState == gameState.inGame {
-//                firingBullets = false
                 self.removeActionForKey("fireBullets")
                 self.removeActionForKey("shooting")
             }
         }
     
-        // Frame updating function
-        override func update(currentTime: NSTimeInterval) {
+    
+    // Frame updating function
+    override func update(currentTime: NSTimeInterval) {
             let amountToMoveBackground = amountToMovePerSecond * CGFloat(deltaFrameTime)
             
             if lastUpdateTime == 0 {
@@ -234,11 +138,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     background.position.y += self.size.height * 2
                 }
             }
-            
-//            if firingBullets == true {
-//                fireBullet()
-//            }
-        }
+    }
     
     /* Self-written functions */
         func startGame() {
@@ -248,15 +148,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let deleteSequence = SKAction.sequence([fadeOutAction, deleteAction])
                 let moveShipOntoScreenAction = SKAction.moveToY(self.size.height * 0.2, duration: 0.5)
                 let startLevelAction = SKAction.runBlock(startNewLevel)
-                let startGameSequence = SKAction.sequence([startGameVoice, moveShipOntoScreenAction, startLevelAction])
+                let startGameSequence = SKAction.sequence([gameNodes.startGameVoice, moveShipOntoScreenAction, startLevelAction])
             
-            startSantaAnimation()
+            santaNode.startSantaAnimation()
             /* Changing game state */
                 currentGameState = gameState.inGame
             
             /* Running */
-                tapToStartLabel.runAction(deleteSequence)
-                player.runAction(startGameSequence)
+                gameNodes.tapToStartLabel.runAction(deleteSequence)
+                santa.runAction(startGameSequence)
         }
     
         func didBeginContact(contact: SKPhysicsContact) {
@@ -307,7 +207,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let scaleIn = SKAction.scaleTo(5, duration: 0.3)
             let fadeOut = SKAction.fadeOutWithDuration(0.3)
             let delete = SKAction.removeFromParent()
-            let explosionSequence = SKAction.sequence([explosionSound, scaleIn, fadeOut, delete])
+            let explosionSequence = SKAction.sequence([gameNodes.explosionSound, scaleIn, fadeOut, delete])
             
             let explosionAnimation: SKAction
             
@@ -341,47 +241,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         }
 
-        func loseALife() {
-            let scaleUp = SKAction.scaleTo(1.5, duration: 0.2)
-            let scaleDown = SKAction.scaleTo(1, duration: 0.2)
-            let scaleSequence = SKAction.sequence([scaleUp,scaleDown])
-            
-            livesNumber -= 1
-            livesLabel.text = "Lives: \(livesNumber)"
-            
-            livesLabel.runAction(scaleSequence)
-            
-            if livesNumber == 0 {
-                runGameOver()
-            } else {
-                self.addChild(player)
-            }
-        }
-    
-        func getALife() {
-            let scaleUp = SKAction.scaleTo(1.5, duration: 0.2)
-            let scaleDown = SKAction.scaleTo(1, duration: 0.2)
-            let scaleSequence = SKAction.sequence([scaleUp,scaleDown])
-            
-            livesNumber += 1
-            livesLabel.text = "Lives: \(livesNumber)"
-            
-            livesLabel.runAction(scaleSequence)
-        }
-    
-        func addScore() {
-            gameScore += 1
-            scoreLabel.text = "Score: \(gameScore)"
-            
-            if gameScore == 10 || gameScore == 25 || gameScore == 50 || gameScore % 100 == 0 {
-                startNewLevel()
-            }
-        }
         
         func runGameOver() {
             let changeSceneAction = SKAction.runBlock(changeScene)
             let waitToChangeScene = SKAction.waitForDuration(1)
-            let changeSceneSequence = SKAction.sequence([loseGameVoice, waitToChangeScene, changeSceneAction])
+            let changeSceneSequence = SKAction.sequence([gameNodes.loseGameVoice, waitToChangeScene, changeSceneAction])
             
             currentGameState = gameState.afterGame
             
@@ -430,7 +294,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if levelNumber > 1 {
-                newLevelLabel.runAction(newLevelAnimation)
+                gameNodes.newLevelLabel.runAction(newLevelAnimation)
                 //getALife()
             }
             
@@ -508,7 +372,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func spawnBoss(){
         let startPoint = CGPoint(x: self.size.width / 2, y: self.size.height * 1.2)
-        let endPoint = CGPoint(x: self.player.position.x, y: -self.size.height * 0.2)
+        let endPoint = CGPoint(x: self.santa.position.x, y: -self.size.height * 0.2)
         let boss = SKSpriteNode(imageNamed: "boss_1")
         let moveBoss = SKAction.moveTo(endPoint, duration: 0.01)
         let deleteBoss = SKAction.removeFromParent()
@@ -558,7 +422,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
+    func loseALife() {
+        let scaleUp = SKAction.scaleTo(1.5, duration: 0.2)
+        let scaleDown = SKAction.scaleTo(1, duration: 0.2)
+        let scaleSequence = SKAction.sequence([scaleUp,scaleDown])
+        
+        livesNumber -= 1
+        gameNodes.livesLabel.text = "Lives: \(livesNumber)"
+        
+        gameNodes.livesLabel.runAction(scaleSequence)
+        
+        if livesNumber == 0 {
+            runGameOver()
+        } else {
+            self.addChild(santa)
+        }
+    }
+    
+//    func getALife() {
+//        let scaleUp = SKAction.scaleTo(1.5, duration: 0.2)
+//        let scaleDown = SKAction.scaleTo(1, duration: 0.2)
+//        let scaleSequence = SKAction.sequence([scaleUp,scaleDown])
+//        
+//        livesNumber += 1
+//        livesLabel.text = "Lives: \(livesNumber)"
+//        
+//        livesLabel.runAction(scaleSequence)
+//    }
+    
+    func addScore() {
+        gameScore += 1
+        gameNodes.scoreLabel.text = "Score: \(gameScore)"
+        
+        if gameScore == 10 || gameScore == 25 || gameScore == 50 || gameScore % 100 == 0 {
+            startNewLevel()
+        }
+    }
+    
     func fireBullet(){
-        self.addChild(bullet.fireBullet(player.position))
+        self.addChild(bullet.fireBullet(santa.position))
     }
 }
