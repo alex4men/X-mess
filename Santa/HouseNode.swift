@@ -20,7 +20,7 @@ class HouseNode {
         let endPoint = CGPoint(x: randomXStart, y: -size.height * 0.2)
         //let ranHouseName = arc4random() % 8 + 1
         let house = SKSpriteNode(imageNamed: "giftedHouse")
-        let moveHouse = SKAction.moveTo(endPoint, duration: 3.7)
+        let moveHouse = SKAction.moveTo(endPoint, duration: 4.67)
         let deleteHouse = SKAction.removeFromParent()
         let houseSequence = SKAction.sequence([moveHouse, deleteHouse])
         

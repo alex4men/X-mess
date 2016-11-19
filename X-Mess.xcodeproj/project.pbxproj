@@ -17,6 +17,9 @@
 		8444E8981DDF474200DE8AFC /* GiftNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8444E8971DDF474200DE8AFC /* GiftNode.swift */; };
 		84493D491DE036260069F20D /* HouseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84493D481DE036260069F20D /* HouseNode.swift */; };
 		84493D5B1DE04BA00069F20D /* PureHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84493D5A1DE04BA00069F20D /* PureHouse.swift */; };
+		84493D5E1DE0625F0069F20D /* BossSoundDie.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84493D5C1DE0625F0069F20D /* BossSoundDie.wav */; };
+		84493D5F1DE0625F0069F20D /* BossSoundStart.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84493D5D1DE0625F0069F20D /* BossSoundStart.wav */; };
+		84493D611DE064100069F20D /* HappyChildren.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84493D601DE064100069F20D /* HappyChildren.mp3 */; };
 		8494E1191DDF51BC00441A60 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494E1181DDF51BC00441A60 /* Utility.swift */; };
 		8494E11B1DDF529500441A60 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494E11A1DDF529500441A60 /* Bullet.swift */; };
 		8494E11D1DDF54F100441A60 /* Santa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494E11C1DDF54F100441A60 /* Santa.swift */; };
@@ -47,6 +50,9 @@
 		8444E8971DDF474200DE8AFC /* GiftNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftNode.swift; sourceTree = "<group>"; };
 		84493D481DE036260069F20D /* HouseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseNode.swift; sourceTree = "<group>"; };
 		84493D5A1DE04BA00069F20D /* PureHouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PureHouse.swift; sourceTree = "<group>"; };
+		84493D5C1DE0625F0069F20D /* BossSoundDie.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BossSoundDie.wav; sourceTree = "<group>"; };
+		84493D5D1DE0625F0069F20D /* BossSoundStart.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = BossSoundStart.wav; sourceTree = "<group>"; };
+		84493D601DE064100069F20D /* HappyChildren.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HappyChildren.mp3; sourceTree = "<group>"; };
 		8494E1181DDF51BC00441A60 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		8494E11A1DDF529500441A60 /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		8494E11C1DDF54F100441A60 /* Santa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Santa.swift; sourceTree = "<group>"; };
@@ -129,6 +135,9 @@
 				FC6858011DDAADFB00A98316 /* BulletSound.wav */,
 				FC6857FE1DDAA74600A98316 /* BulletSound_another.wav */,
 				FC6858031DDAAF7300A98316 /* ExplosionSound.wav */,
+				84493D5C1DE0625F0069F20D /* BossSoundDie.wav */,
+				84493D5D1DE0625F0069F20D /* BossSoundStart.wav */,
+				84493D601DE064100069F20D /* HappyChildren.mp3 */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -197,10 +206,13 @@
 				6398F2451DBFD9EA0001E4AC /* GameScene.sks in Resources */,
 				6398F2511DBFD9EA0001E4AC /* LaunchScreen.storyboard in Resources */,
 				6398F24E1DBFD9EA0001E4AC /* Assets.xcassets in Resources */,
+				84493D5F1DE0625F0069F20D /* BossSoundStart.wav in Resources */,
 				FC6857F81DDA8D5200A98316 /* GameMusic.mp3 in Resources */,
 				FC6858021DDAADFB00A98316 /* BulletSound.wav in Resources */,
+				84493D5E1DE0625F0069F20D /* BossSoundDie.wav in Resources */,
 				FC6857FD1DDA8EF700A98316 /* StartGameVoice.mp3 in Resources */,
 				FC6857F91DDA8D5200A98316 /* MainMenuVoice.mp3 in Resources */,
+				84493D611DE064100069F20D /* HappyChildren.mp3 in Resources */,
 				6398F24C1DBFD9EA0001E4AC /* Main.storyboard in Resources */,
 				FC6857FC1DDA8EF700A98316 /* LoseGameVoice.mp3 in Resources */,
 				FC6858041DDAAF7300A98316 /* ExplosionSound.wav in Resources */,

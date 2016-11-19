@@ -213,6 +213,7 @@ extension GameScene {
             body2.node?.removeFromParent()
             
             loseALife()
+            startNewLevel()
         }
 
         
@@ -231,8 +232,9 @@ extension GameScene {
         
         if body1.categoryBitMask == PhysicsCategories.House && body2.categoryBitMask == PhysicsCategories.Gift {
             
+            //let action = SKAction.runAction(gameNodes.giftPlanted)
+            self.runAction(gameNodes.giftPlanted)
             body2.node?.removeFromParent()
-            
             addScore()
         }
 
@@ -346,7 +348,7 @@ extension GameScene {
             //getALife()
         }
         
-        if (levelNumber == 2) {
+        if (levelNumber % 2 == 0){
             self.spawnBoss()
             self.removeActionForKey("spawningEnemies")
             self.removeActionForKey("spawningHouses")
@@ -436,17 +438,18 @@ extension GameScene {
 
     
     func spawnBoss(){
+        bossLifes = 10
         let startPoint = CGPoint(x: self.size.width / 2, y: self.size.height * 1.2)
-        let endPoint1 = CGPoint(x: 0, y: self.size.height / 2)
-        let endPoint2 = CGPoint(x: self.size.width, y: self.size.height / 2 + 300)
+        let endPoint1 = CGPoint(x: utility.random(min: CGRectGetMinX(gameArea), max: CGRectGetMaxX(gameArea)), y: self.size.height * 0.5)
+        let endPoint2 = CGPoint(x: utility.random(min: CGRectGetMinX(gameArea), max: CGRectGetMaxX(gameArea)), y: self.size.height * 3/4)
         let endPoint3 = CGPoint(x: self.santa.position.x, y: -self.size.height * 0.2)
         let boss = SKSpriteNode(imageNamed: "boss_1")
-        let moveBoss1 = SKAction.moveTo(endPoint1, duration: 5)
-        let moveBoss2 = SKAction.moveTo(endPoint2, duration: 5)
-        let moveBoss3 = SKAction.moveTo(endPoint3, duration: 5)
+        let moveBoss1 = SKAction.moveTo(endPoint1, duration: 1)
+        let moveBoss2 = SKAction.moveTo(endPoint2, duration: 1)
+        let moveBoss3 = SKAction.moveTo(endPoint3, duration: 2)
         let deleteBoss = SKAction.removeFromParent()
         let newLevelWhenDis = SKAction.runBlock(startNewLevel)
-        let bossSequence = SKAction.sequence([moveBoss1,moveBoss2,moveBoss3,deleteBoss,newLevelWhenDis])
+        let bossSequence = SKAction.sequence([gameNodes.bossSoundStart,moveBoss1,moveBoss2,moveBoss3,deleteBoss,gameNodes.bossSoundDie, newLevelWhenDis])
         let dx = endPoint3.x - startPoint.x
         let dy = endPoint3.y - startPoint.y
         let amountToRotate = atan2(dy, dx)
@@ -463,6 +466,7 @@ extension GameScene {
         boss.physicsBody!.contactTestBitMask = PhysicsCategories.Player | PhysicsCategories.Bullet
         boss.zPosition = 1
         boss.zRotation = amountToRotate
+        
         
         self.addChild(boss)
         
@@ -524,7 +528,7 @@ extension GameScene {
         gameScore += 1
         gameNodes.scoreLabel.text = "Score: \(gameScore)"
         
-        if gameScore == 10 || gameScore == 25 || gameScore == 50 || gameScore % 100 == 0 {
+        if gameScore == 10 || gameScore == 40 || gameScore == 80 || gameScore % 120 == 0 {
             startNewLevel()
         }
     }
