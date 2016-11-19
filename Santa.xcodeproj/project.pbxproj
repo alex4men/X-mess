@@ -15,6 +15,7 @@
 		6398F24E1DBFD9EA0001E4AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6398F24D1DBFD9EA0001E4AC /* Assets.xcassets */; };
 		6398F2511DBFD9EA0001E4AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6398F24F1DBFD9EA0001E4AC /* LaunchScreen.storyboard */; };
 		8444E8981DDF474200DE8AFC /* GiftNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8444E8971DDF474200DE8AFC /* GiftNode.swift */; };
+		84493D491DE036260069F20D /* HouseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84493D481DE036260069F20D /* HouseNode.swift */; };
 		8494E1191DDF51BC00441A60 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494E1181DDF51BC00441A60 /* Utility.swift */; };
 		8494E11B1DDF529500441A60 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494E11A1DDF529500441A60 /* Bullet.swift */; };
 		8494E11D1DDF54F100441A60 /* Santa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8494E11C1DDF54F100441A60 /* Santa.swift */; };
@@ -43,6 +44,7 @@
 		6398F2501DBFD9EA0001E4AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6398F2521DBFD9EA0001E4AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8444E8971DDF474200DE8AFC /* GiftNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftNode.swift; sourceTree = "<group>"; };
+		84493D481DE036260069F20D /* HouseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseNode.swift; sourceTree = "<group>"; };
 		8494E1181DDF51BC00441A60 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		8494E11A1DDF529500441A60 /* Bullet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		8494E11C1DDF54F100441A60 /* Santa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Santa.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				8494E11A1DDF529500441A60 /* Bullet.swift */,
 				8494E11C1DDF54F100441A60 /* Santa.swift */,
 				8494E11E1DDF585000441A60 /* GameNodes.swift */,
+				84493D481DE036260069F20D /* HouseNode.swift */,
 			);
 			path = Santa;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			files = (
 				8494E1191DDF51BC00441A60 /* Utility.swift in Sources */,
 				FC6857E71DDA6D6800A98316 /* MainMenuScene.swift in Sources */,
+				84493D491DE036260069F20D /* HouseNode.swift in Sources */,
 				6398F2471DBFD9EA0001E4AC /* GameScene.swift in Sources */,
 				6398F2491DBFD9EA0001E4AC /* GameViewController.swift in Sources */,
 				FAE679271DC1462C00A65538 /* GameOverScene.swift in Sources */,

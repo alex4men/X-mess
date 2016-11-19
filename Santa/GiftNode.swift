@@ -13,7 +13,7 @@ class GiftNode {
     //TODO: detect collision +- sevral pixels
     
     let giftSpeed : NSTimeInterval = 1 //define velocity
-    let giftBitMask : UInt32 = 0b1000 //define physics bitmask
+    //let giftBitMask : UInt32 = 0b1000 //define physics bitmask
     let distanceToFly : CGFloat = 500 //detect how many shoud gift fly
     
     
@@ -25,8 +25,8 @@ class GiftNode {
         gift.zPosition = 1
         gift.physicsBody = SKPhysicsBody(rectangleOfSize: gift.size)
         gift.physicsBody?.affectedByGravity = false
-        gift.physicsBody?.categoryBitMask = giftBitMask
-        gift.physicsBody?.contactTestBitMask = UInt32() //FIXME: test bitmask with HouseNode
+        gift.physicsBody?.categoryBitMask = PhysicsCategories.Gift
+        gift.physicsBody?.contactTestBitMask = PhysicsCategories.House
         
         return gift //don't forget to self.addChild
     }

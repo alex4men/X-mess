@@ -23,6 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let santaNode = Santa()
     var gameNodes : GameNodes!
     var santa : SKSpriteNode!
+    var houseNode = HouseNode()
     
     /* OVERRIDING FUNCTIONS */
     
@@ -227,6 +228,14 @@ extension GameScene {
             addScore()
         }
         
+        if body1.categoryBitMask == PhysicsCategories.House && body2.categoryBitMask == PhysicsCategories.Gift {
+            
+            body2.node?.removeFromParent()
+            
+            addScore()
+        }
+
+        
         if body1.categoryBitMask == PhysicsCategories.Bullet && body2.categoryBitMask == PhysicsCategories.Boss && body2.node?.position.y < self.size.height {
             
             if body2.node != nil {
@@ -235,6 +244,8 @@ extension GameScene {
                 } else {
                     spawnExplosion(body2.node!.position)
                     body2.node?.removeFromParent()
+                
+                    startNewLevel()
                 }
             }
             
@@ -312,10 +323,19 @@ extension GameScene {
         let fadeOutAction = SKAction.fadeOutWithDuration(0.1)
         let newLevelAnimation = SKAction.sequence([fadeInAction, scaleUp, scaleDown, fadeOutAction])
         
+        let spawnHouseAction = SKAction.runBlock(spawnHouse)
+        let waitToSpawnHouse = SKAction.waitForDuration(4)
+        let spawnSequenceHouse = SKAction.sequence([waitToSpawnHouse, spawnHouseAction])
+        let spawnHouseForever = SKAction.repeatActionForever(spawnSequenceHouse)
+        
         levelNumber += 1
         
         if self.actionForKey("spawningEnemies") != nil {
             self.removeActionForKey("spawningEnemies")
+        }
+        
+        if self.actionForKey("spawningHouses") != nil {
+            self.removeActionForKey("spawningHouses")
         }
         
         if levelNumber > 1 {
@@ -326,8 +346,10 @@ extension GameScene {
         if (levelNumber == 2) {
             self.spawnBoss()
             self.removeActionForKey("spawningEnemies")
+            self.removeActionForKey("spawningHouses")
         } else {
             self.runAction(spawnForever, withKey: "spawningEnemies")
+            self.runAction(spawnHouseForever, withKey: "spawningHouses")
         }
     }
     
@@ -393,6 +415,13 @@ extension GameScene {
                 withKey: "animation")
         }
         
+    }
+    
+    func spawnHouse() {
+        let house = houseNode.addHouse(gameArea, size: size)
+        if currentGameState == gameState.inGame {
+            self.addChild(house)
+        }
     }
     
     func spawnBoss(){
