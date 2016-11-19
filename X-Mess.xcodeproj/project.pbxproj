@@ -34,7 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6398F23F1DBFD9EA0001E4AC /* Santa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Santa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6398F23F1DBFD9EA0001E4AC /* X-Mess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "X-Mess.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6398F2421DBFD9EA0001E4AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6398F2441DBFD9EA0001E4AC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		6398F2461DBFD9EA0001E4AC /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		6398F2361DBFD9EA0001E4AC = {
 			isa = PBXGroup;
 			children = (
-				6398F2411DBFD9EA0001E4AC /* Santa */,
+				6398F2411DBFD9EA0001E4AC /* X-Mess */,
 				6398F2401DBFD9EA0001E4AC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -84,12 +84,12 @@
 		6398F2401DBFD9EA0001E4AC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6398F23F1DBFD9EA0001E4AC /* Santa.app */,
+				6398F23F1DBFD9EA0001E4AC /* X-Mess.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6398F2411DBFD9EA0001E4AC /* Santa */ = {
+		6398F2411DBFD9EA0001E4AC /* X-Mess */ = {
 			isa = PBXGroup;
 			children = (
 				FC6857EF1DDA7A5500A98316 /* Resources */,
@@ -110,6 +110,7 @@
 				8494E11E1DDF585000441A60 /* GameNodes.swift */,
 				84493D481DE036260069F20D /* HouseNode.swift */,
 			);
+			name = "X-Mess";
 			path = Santa;
 			sourceTree = "<group>";
 		};
@@ -132,9 +133,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6398F23E1DBFD9EA0001E4AC /* Santa */ = {
+		6398F23E1DBFD9EA0001E4AC /* X-Mess */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6398F2551DBFD9EA0001E4AC /* Build configuration list for PBXNativeTarget "Santa" */;
+			buildConfigurationList = 6398F2551DBFD9EA0001E4AC /* Build configuration list for PBXNativeTarget "X-Mess" */;
 			buildPhases = (
 				6398F23B1DBFD9EA0001E4AC /* Sources */,
 				6398F23C1DBFD9EA0001E4AC /* Frameworks */,
@@ -144,9 +145,9 @@
 			);
 			dependencies = (
 			);
-			name = Santa;
+			name = "X-Mess";
 			productName = Santa;
-			productReference = 6398F23F1DBFD9EA0001E4AC /* Santa.app */;
+			productReference = 6398F23F1DBFD9EA0001E4AC /* X-Mess.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -166,7 +167,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6398F23A1DBFD9EA0001E4AC /* Build configuration list for PBXProject "Santa" */;
+			buildConfigurationList = 6398F23A1DBFD9EA0001E4AC /* Build configuration list for PBXProject "X-Mess" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -179,7 +180,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6398F23E1DBFD9EA0001E4AC /* Santa */,
+				6398F23E1DBFD9EA0001E4AC /* X-Mess */,
 			);
 		};
 /* End PBXProject section */
@@ -346,7 +347,7 @@
 				INFOPLIST_FILE = Santa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Innopolis.Santa1;
+				PRODUCT_BUNDLE_IDENTIFIER = "Innopolis.X-Mess";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 			};
@@ -360,7 +361,7 @@
 				INFOPLIST_FILE = Santa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Innopolis.Santa1;
+				PRODUCT_BUNDLE_IDENTIFIER = "Innopolis.X-Mess";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 2.3;
 			};
@@ -369,7 +370,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6398F23A1DBFD9EA0001E4AC /* Build configuration list for PBXProject "Santa" */ = {
+		6398F23A1DBFD9EA0001E4AC /* Build configuration list for PBXProject "X-Mess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6398F2531DBFD9EA0001E4AC /* Debug */,
@@ -378,7 +379,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6398F2551DBFD9EA0001E4AC /* Build configuration list for PBXNativeTarget "Santa" */ = {
+		6398F2551DBFD9EA0001E4AC /* Build configuration list for PBXNativeTarget "X-Mess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6398F2561DBFD9EA0001E4AC /* Debug */,
