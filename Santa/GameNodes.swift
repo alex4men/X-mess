@@ -36,13 +36,13 @@ class GameNodes {
         background_top.name = "Background"
         background_top.position = CGPoint(x: size.width / 2, y: size.height)
         background_top.size = size
-        background_top.zPosition = 0
+        background_top.zPosition = -1
         
         background_bottom.anchorPoint = CGPoint(x: 0.5, y: 0)
         background_bottom.name = "Background"
         background_bottom.position = CGPoint(x: size.width / 2, y: 0)
         background_bottom.size = size
-        background_bottom.zPosition = 0
+        background_bottom.zPosition = -1
         
         scoreLabel.fontColor = SKColor.whiteColor()
         scoreLabel.fontName = "SnowtopCaps"
