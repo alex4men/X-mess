@@ -34,7 +34,9 @@ class GiftNode {
     func moveGift(positionY: CGFloat) -> SKAction {
         let moveGift =  SKAction.moveToY(positionY + distanceToFly, duration: giftSpeed)
         let deleteGift = SKAction.removeFromParent()
-        let giftSequence = SKAction.sequence([moveGift,deleteGift]) //FIXME: add explosion
+        let disaapear = SKAction.scaleTo(0.3, duration: 1)
+        let group = SKAction.group([moveGift,disaapear])
+        let giftSequence = SKAction.sequence([group,deleteGift]) //FIXME: add explosion
         return giftSequence //don't forget ro run action gift.runAction
     }
     
