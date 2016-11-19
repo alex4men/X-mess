@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameNodes : GameNodes!
     var santa : SKSpriteNode!
     var houseNode = HouseNode()
+    var pureHouseNode = PureHouseNode()
     
     /* OVERRIDING FUNCTIONS */
     
@@ -324,9 +325,11 @@ extension GameScene {
         let newLevelAnimation = SKAction.sequence([fadeInAction, scaleUp, scaleDown, fadeOutAction])
         
         let spawnHouseAction = SKAction.runBlock(spawnHouse)
-        let waitToSpawnHouse = SKAction.waitForDuration(4)
-        let spawnSequenceHouse = SKAction.sequence([waitToSpawnHouse, spawnHouseAction])
+        let waitToSpawnHouse = SKAction.waitForDuration(1)
+        let spawnpHouseAction = SKAction.runBlock(spawnPureHouse)
+        let spawnSequenceHouse = SKAction.sequence([waitToSpawnHouse, spawnHouseAction,waitToSpawnHouse, spawnpHouseAction,waitToSpawnHouse ,spawnpHouseAction,waitToSpawnHouse ,spawnpHouseAction,waitToSpawnHouse,spawnpHouseAction])
         let spawnHouseForever = SKAction.repeatActionForever(spawnSequenceHouse)
+        
         
         levelNumber += 1
         
@@ -424,8 +427,15 @@ extension GameScene {
         }
     }
     
+    func spawnPureHouse() {
+        let house = pureHouseNode.addHouse(gameArea, size: size)
+        if currentGameState == gameState.inGame {
+            self.addChild(house)
+        }
+    }
+
+    
     func spawnBoss(){
-        print("should spawn BOSS")
         let startPoint = CGPoint(x: self.size.width / 2, y: self.size.height * 1.2)
         let endPoint1 = CGPoint(x: 0, y: self.size.height / 2)
         let endPoint2 = CGPoint(x: self.size.width, y: self.size.height / 2 + 300)
@@ -435,7 +445,8 @@ extension GameScene {
         let moveBoss2 = SKAction.moveTo(endPoint2, duration: 5)
         let moveBoss3 = SKAction.moveTo(endPoint3, duration: 5)
         let deleteBoss = SKAction.removeFromParent()
-        let bossSequence = SKAction.sequence([moveBoss1,moveBoss2,moveBoss3,deleteBoss])
+        let newLevelWhenDis = SKAction.runBlock(startNewLevel)
+        let bossSequence = SKAction.sequence([moveBoss1,moveBoss2,moveBoss3,deleteBoss,newLevelWhenDis])
         let dx = endPoint3.x - startPoint.x
         let dy = endPoint3.y - startPoint.y
         let amountToRotate = atan2(dy, dx)
