@@ -10,6 +10,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let gameArea: CGRect
     var levelNumber = 0
     var livesNumber = 3
+    var bossLifes = 10
     
     // Update vars
     var lastUpdateTime: NSTimeInterval = 0
@@ -196,6 +197,23 @@ extension GameScene {
             loseALife()
         }
         
+        if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Boss {
+            
+            if body1.node != nil {
+                spawnExplosion(body1.node!.position)
+            }
+            
+            if body2.node != nil {
+                spawnExplosion(body2.node!.position)
+            }
+            
+            body1.node?.removeFromParent()
+            body2.node?.removeFromParent()
+            
+            loseALife()
+        }
+
+        
         // Condition when the bullet has hit the enemy
         if body1.categoryBitMask == PhysicsCategories.Bullet && body2.categoryBitMask == PhysicsCategories.Enemy && body2.node?.position.y < self.size.height {
             
@@ -208,6 +226,23 @@ extension GameScene {
             
             addScore()
         }
+        
+        if body1.categoryBitMask == PhysicsCategories.Bullet && body2.categoryBitMask == PhysicsCategories.Boss && body2.node?.position.y < self.size.height {
+            
+            if body2.node != nil {
+                if bossLifes > 0 {
+                    bossLifes -= 1
+                } else {
+                    spawnExplosion(body2.node!.position)
+                    body2.node?.removeFromParent()
+                }
+            }
+            
+            body1.node?.removeFromParent()
+            
+            addScore()
+        }
+
     }
     
     func spawnExplosion(spawnPosition: CGPoint) {
@@ -288,12 +323,12 @@ extension GameScene {
             //getALife()
         }
         
-        if (levelNumber > 2) {
+        if (levelNumber == 2) {
             self.spawnBoss()
             self.removeActionForKey("spawningEnemies")
+        } else {
+            self.runAction(spawnForever, withKey: "spawningEnemies")
         }
-        
-        self.runAction(spawnForever, withKey: "spawningEnemies")
     }
     
     func changeScene() {
@@ -361,14 +396,19 @@ extension GameScene {
     }
     
     func spawnBoss(){
+        print("should spawn BOSS")
         let startPoint = CGPoint(x: self.size.width / 2, y: self.size.height * 1.2)
-        let endPoint = CGPoint(x: self.santa.position.x, y: -self.size.height * 0.2)
+        let endPoint1 = CGPoint(x: 0, y: self.size.height / 2)
+        let endPoint2 = CGPoint(x: self.size.width, y: self.size.height / 2 + 300)
+        let endPoint3 = CGPoint(x: self.santa.position.x, y: -self.size.height * 0.2)
         let boss = SKSpriteNode(imageNamed: "boss_1")
-        let moveBoss = SKAction.moveTo(endPoint, duration: 0.01)
+        let moveBoss1 = SKAction.moveTo(endPoint1, duration: 5)
+        let moveBoss2 = SKAction.moveTo(endPoint2, duration: 5)
+        let moveBoss3 = SKAction.moveTo(endPoint3, duration: 5)
         let deleteBoss = SKAction.removeFromParent()
-        let bossSequence = SKAction.sequence([moveBoss, deleteBoss])
-        let dx = endPoint.x - startPoint.x
-        let dy = endPoint.y - startPoint.y
+        let bossSequence = SKAction.sequence([moveBoss1,moveBoss2,moveBoss3,deleteBoss])
+        let dx = endPoint3.x - startPoint.x
+        let dy = endPoint3.y - startPoint.y
         let amountToRotate = atan2(dy, dx)
         
         let bossAnimation: SKAction
@@ -378,10 +418,10 @@ extension GameScene {
         boss.setScale(3)
         boss.physicsBody = SKPhysicsBody(rectangleOfSize: boss.size)
         boss.physicsBody!.affectedByGravity = false
-        boss.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
+        boss.physicsBody!.categoryBitMask = PhysicsCategories.Boss
         boss.physicsBody!.collisionBitMask = PhysicsCategories.None
         boss.physicsBody!.contactTestBitMask = PhysicsCategories.Player | PhysicsCategories.Bullet
-        boss.zPosition = 2
+        boss.zPosition = 1
         boss.zRotation = amountToRotate
         
         self.addChild(boss)

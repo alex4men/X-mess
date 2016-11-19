@@ -24,6 +24,7 @@ struct PhysicsCategories {
     static let Player: UInt32 = 0b1 // 1
     static let Bullet: UInt32 = 0b10 // 2
     static let Enemy: UInt32 = 0b100 // 4
+    static let Boss: UInt32 = 0b10000
 }
 
 class Utility {
