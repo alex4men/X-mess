@@ -25,6 +25,9 @@ class GameNodes {
     let loseGameVoice = SKAction.playSoundFileNamed("LoseGameVoice.mp3", waitForCompletion: false)
     let bulletSound = SKAction.playSoundFileNamed("BulletSound.wav", waitForCompletion: false)
     let explosionSound = SKAction.playSoundFileNamed("ExplosionSound.wav", waitForCompletion: false)
+    let bossSoundStart = SKAction.playSoundFileNamed("BossSoundStart.wav", waitForCompletion: false)
+    let bossSoundDie = SKAction.playSoundFileNamed("BossSoundDie.wav", waitForCompletion: false)
+    let giftPlanted = SKAction.playSoundFileNamed("HappyChildren.mp3", waitForCompletion: false)
     
     init(size: CGSize) {
         

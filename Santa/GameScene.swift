@@ -232,8 +232,9 @@ extension GameScene {
         
         if body1.categoryBitMask == PhysicsCategories.House && body2.categoryBitMask == PhysicsCategories.Gift {
             
+            //let action = SKAction.runAction(gameNodes.giftPlanted)
+            self.runAction(gameNodes.giftPlanted)
             body2.node?.removeFromParent()
-            
             addScore()
         }
 
@@ -448,7 +449,7 @@ extension GameScene {
         let moveBoss3 = SKAction.moveTo(endPoint3, duration: 2)
         let deleteBoss = SKAction.removeFromParent()
         let newLevelWhenDis = SKAction.runBlock(startNewLevel)
-        let bossSequence = SKAction.sequence([moveBoss1,moveBoss2,moveBoss3,deleteBoss,newLevelWhenDis])
+        let bossSequence = SKAction.sequence([gameNodes.bossSoundStart,moveBoss1,moveBoss2,moveBoss3,deleteBoss,gameNodes.bossSoundDie, newLevelWhenDis])
         let dx = endPoint3.x - startPoint.x
         let dy = endPoint3.y - startPoint.y
         let amountToRotate = atan2(dy, dx)
@@ -465,6 +466,7 @@ extension GameScene {
         boss.physicsBody!.contactTestBitMask = PhysicsCategories.Player | PhysicsCategories.Bullet
         boss.zPosition = 1
         boss.zRotation = amountToRotate
+        
         
         self.addChild(boss)
         
