@@ -1,5 +1,5 @@
 # X-mess
-WGD-LB Delta's group project
+iOS arcade game using SpriteKit and Swift 2.3, developed during Video Game Development course in Innopolis University in Fall 2016 by Delta team.
 
 <img src="http://is5.mzstatic.com/image/thumb/Purple118/v4/6c/e0/da/6ce0da45-abb6-5819-ea17-1742f20e885b/source/392x696bb.jpg" />
 
